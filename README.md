@@ -790,4 +790,203 @@ pip install -e ".[dev,test,docs]"
 # Set up pre-commit hooks
 pre-commit install
 
-# Run the development s
+# Run the development server with hot reload
+dandelions start --dev --reload
+
+# Generate documentation
+cd docs && make html
+
+# Create a distribution package
+python setup.py sdist bdist_wheel
+```
+
+🐛 Troubleshooting
+
+Common Issues
+
+Issue: "Unable to connect to Nostr relays"
+
+```bash
+# Check relay status
+dandelions test-nostr
+
+# Try alternative relays
+export NOSTR_RELAYS="wss://relay.primal.net,wss://relay.current.fyi"
+```
+
+Issue: "LLM API key invalid"
+
+```bash
+# Verify API key format
+echo $DEEPSEEK_API_KEY | head -c 10
+
+# Test specific provider
+dandelions test-provider deepseek
+
+# Regenerate API key from provider dashboard
+```
+
+Issue: "Web interface not loading"
+
+```bash
+# Check if port is in use
+netstat -tulpn | grep :8501
+
+# Run on alternative port
+dandelions start --web-ui-port 8502
+
+# Check firewall settings
+sudo ufw allow 8501/tcp
+```
+
+Getting Help
+
+1. Check the logs: dandelions logs --tail 50
+2. Enable debug mode: dandelions start --log-level DEBUG
+3. Search existing issues: GitHub Issues
+4. Join the community: Nostr Channel
+
+📈 Roadmap
+
+Version 2.0 (Q2 2024)
+
+· Plugin Marketplace: Community-contributed tools and providers
+· Advanced Analytics: Machine learning insights on Nostr network
+· Multi-Agent Systems: Cooperative agent networks
+· Voice Interface: Voice input/output support
+· Mobile Application: iOS and Android native apps
+
+Version 1.x (Current)
+
+· Multi-LLM Support: DeepSeek, Mistral, OpenAI, Anthropic, Ollama
+· Full MCP Implementation: Standards-compliant protocol server
+· Web Dashboard: Comprehensive monitoring interface
+· Nostr Integration: Multi-relay support with encryption
+· Docker Deployment: Production-ready containerization
+
+🤝 Contributing
+
+We welcome contributions from developers of all skill levels! Here's how to get involved:
+
+Ways to Contribute
+
+1. Report bugs and suggest features via GitHub Issues
+2. Submit pull requests for bug fixes and enhancements
+3. Improve documentation and create tutorials
+4. Add new LLM providers or tools
+5. Translate the interface into new languages
+6. Share your use cases and success stories
+
+Development Workflow
+
+```bash
+# 1. Fork the repository
+# 2. Clone your fork
+git clone https://github.com/your-username/dandelions.git
+
+# 3. Create a feature branch
+git checkout -b feature/amazing-feature
+
+# 4. Make your changes
+# 5. Run tests
+pytest
+
+# 6. Commit with semantic messages
+git commit -m "feat: add new LLM provider"
+
+# 7. Push to your fork
+git push origin feature/amazing-feature
+
+# 8. Open a Pull Request
+```
+
+Code Standards
+
+· Follow PEP 8 for Python code
+· Use Conventional Commits for commit messages
+· Include tests for new features
+· Update documentation for user-facing changes
+· Add type hints for all function signatures
+
+📄 License
+
+Dandelions is released under the MIT License - see the LICENSE file for details.
+
+```
+MIT License
+
+Copyright (c) 2024 Dafydd Napier
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+🙏 Acknowledgments
+
+Core Development
+
+· Dafydd Napier - Creator and Lead Developer
+· Nostr Protocol Community - For the amazing decentralized network
+· Model Context Protocol Team - For the excellent protocol specification
+· All LLM Providers - For their incredible AI models and APIs
+
+Special Thanks
+
+· Early testers and bug reporters
+· Documentation contributors
+· Open-source library maintainers
+· The entire Nostr ecosystem
+
+Sponsors & Supporters
+
+This project is supported by:
+
+· DeepSeek AI
+· Mistral AI
+· Community donations via Bitcoin/Nostr zaps
+
+🔗 Links & Resources
+
+· Official Website: https://dandelions.ai
+· GitHub Repository: https://github.com/dafyddnapier/dandelions
+· Documentation: https://docs.dandelions.ai
+· Issue Tracker: https://github.com/dafyddnapier/dandelions/issues
+· Discord Community: https://discord.gg/dandelions
+· Nostr Channel: npub1dandelions... (check GitHub for latest)
+· Twitter/X: @dandelions_ai
+
+🌟 Support the Project
+
+Dandelions is free and open-source software. You can support its development:
+
+1. Star the repository on GitHub
+2. Contribute code or documentation
+3. Report issues and suggest features
+4. Share with your network
+5. Donate via Bitcoin or Nostr zaps
+
+```
+Bitcoin: bc1q... (see GitHub for address)
+Nostr: npub1dandelions... (DM for zap invoice)
+```
+
+---
+
+"The most sophisticated Nostr agent framework, making AI accessible across the decentralized web."
+
+Built with ❤️ by Dafydd Napier and contributors
