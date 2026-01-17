@@ -1,0 +1,3 @@
+pynostr>=1.0
+aiohttp
+websockets
